@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Village Feed</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= PROFILE PAGE ================= -->
+<div id="profilePage" style="display:none;" class="profile-page">
+
+    <div class="profile-header">
+
+        <div class="profile-avatar">
+
+            <!-- PROFILE IMAGE -->
+            <img id="profileImg" src="https://via.placeholder.com/120" />
+
+            <!-- HIDDEN INPUT -->
+            <input type="file"
+                   id="profileImgInput"
+                   accept="image/*"
+                   onchange="updateProfileImage()"
+                   hidden>
+
+            <!-- ACTION BUTTONS -->
+            <div class="profile-photo-actions">
+
+                <button onclick="triggerImageUpload()">Change Photo</button>
+
+                <button onclick="removeProfileImage()">Remove Photo</button>
+
+            </div>
+
+        </div>
+
+        <div class="profile-info">
+            <h2 id="profileUsername">Username</h2>
+            <p id="profileBio">No bio yet</p>
+
+            <div class="profile-stats">
+                <div><b id="postCount">0</b><span>Posts</span></div>
+                <div><b id="likeCount">0</b><span>Likes</span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h3>✏️ Edit Profile</h3>
+
+    <div class="profile-form">
+
+        <input id="pName" placeholder="Full Name">
+        <input id="pAge" placeholder="Age">
+        <input id="pLocation" placeholder="Location">
+        <input id="pPhone" placeholder="Phone Number">
+
+        <textarea id="pBio" placeholder="Write bio..."></textarea>
+
+        <select id="pCategory">
+            <option value="">Select Category</option>
+            <option value="General">General</option>
+            <option value="OBC">OBC</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+        </select>
+
+        <button onclick="saveProfile()">Save Profile</button>
+
+    </div>
+
+    <hr>
+
+    <h3>📌 My Posts</h3>
+    <div id="myPosts"></div>
+
+    <button onclick="goHome()">⬅ Back</button>
+
+</div>
+
+<!-- ================= EXPLORE PAGE ================= -->
+<div id="explorePage" style="display:none; padding:0;">
+
+    <div style="padding:15px; background:#000; color:#fff;">
+        <h2>🧭 Explore</h2>
+        <button onclick="goHome()">⬅ Back</button>
+    </div>
+
+    <div id="videoFeed" class="video-feed"></div>
+
+</div>
+
+<!-- ================= MAIN LAYOUT ================= -->
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <div class="sidebar-top">
+            <h2>🌍 Village Feed</h2>
+
+            <p onclick="goHome()" class="active">🏠 Home</p>
+            <p>🔍 Search</p>
+            <p onclick="openExplore()">🧭 Explore</p>
+            <p onclick="openModal()">➕ Create</p>
+            <p>💬 Messages</p>
+            <p onclick="openProfile()">👤 Profile</p>
+        </div>
+
+        <div class="sidebar-bottom">
+            <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+        </div>
+
+    </div>
+
+    <!-- MAIN FEED -->
+    <div class="main">
+
+        <div class="topbar">
+            <h1>🌍 Village Feed</h1>
+            <input type="text" id="searchInput" placeholder="Search problems...">
+        </div>
+
+        <div class="filters">
+            <button onclick="render()">All</button>
+            <button onclick="render(getPosts().filter(p => p.category==='Road'))">Road</button>
+            <button onclick="render(getPosts().filter(p => p.category==='Water'))">Water</button>
+            <button onclick="render(getPosts().filter(p => p.category==='Electricity'))">Electricity</button>
+            <button onclick="render(getPosts().filter(p => p.category==='Cleanliness'))">Cleanliness</button>
+        </div>
+
+        <div id="feed"></div>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+        <h3>Suggested</h3>
+        <p>👤 Local Authority</p>
+        <p>👤 Admin</p>
+        <p>👤 Volunteers</p>
+    </div>
+
+</div>
+
+<!-- CREATE POST MODAL -->
+<div id="modal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+
+        <h3>Create Post</h3>
+
+        <input id="modalTitle" placeholder="Title">
+        <textarea id="modalDescription" placeholder="Description"></textarea>
+
+        <select id="modalCategory">
+            <option value="">Select Category</option>
+            <option value="Road">Road</option>
+            <option value="Water">Water</option>
+            <option value="Electricity">Electricity</option>
+            <option value="Cleanliness">Cleanliness</option>
+        </select>
+
+        <input type="file" id="mediaInput" accept="image/*,video/*">
+
+        <button onclick="addPost()">Post</button>
+        <button onclick="closeModal()">Cancel</button>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

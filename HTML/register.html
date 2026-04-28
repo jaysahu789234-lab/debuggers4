@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Village Feed</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-body">
+
+<!-- ================= AUTH CONTAINER ================= -->
+<div class="auth-container">
+
+    <!-- LEFT BRAND PANEL -->
+    <div class="auth-left">
+        <h1>🌍 Village Feed</h1>
+        <p>Join your community. Report. Improve.</p>
+    </div>
+
+    <!-- RIGHT REGISTER PANEL -->
+    <div class="auth-right">
+
+        <div class="auth-box">
+
+            <h2>Create Account</h2>
+            <p class="subtext">Register to get started</p>
+
+            <!-- FORM -->
+            <form onsubmit="event.preventDefault(); register();">
+
+                <input type="text"
+                       id="newUser"
+                       placeholder="Username"
+                       required
+                       autocomplete="username">
+
+                <input type="password"
+                       id="newPass"
+                       placeholder="Password"
+                       required
+                       autocomplete="new-password">
+
+                <button type="submit" class="auth-btn">Register</button>
+
+            </form>
+
+            <!-- MESSAGE -->
+            <p id="message" class="msg"></p>
+
+            <!-- LINK -->
+            <div class="auth-links">
+                <p onclick="goToLogin()">Already have an account? Login</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
